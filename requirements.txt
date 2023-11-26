@@ -1,5 +1,4 @@
+fake_useragent
 requests
 selenium
 selenium-profiles
-fake-useragent
-babel

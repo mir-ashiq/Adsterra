@@ -87,6 +87,8 @@ def stealth_browser(website):
         time.sleep(1)
         driver.refresh()
         time.sleep(random.uniform(2, 3))
+    if driver.current_url == "https://www.google.com/":
+        driver.get(website)
 
     # Simulate random clicks, and fluidly scroll up and down for 30-40 seconds 
     print("Started scrolling...")
@@ -98,7 +100,7 @@ def stealth_browser(website):
 
     # # Select any URL, spend 20-40 seconds on the destination website, return to the previous page, and engage in random scrolling for 20-30 seconds
 
-    for _ in range(random.randint(10, 15)):
+    for _ in range(random.randint(2, 7)):
         try:
             driver.find_element(By.TAG_NAME, "a").click()
             time.sleep(random.uniform(1, 2))
@@ -119,7 +121,11 @@ if __name__ == "__main__":
     with open("urls.txt", "r") as f:
         websites = f.readlines()
         
-    for website in websites:
-        website = random.choice(websites).strip()  # strip to remove newline characters
-        stealth_browser(website)
-        #time.sleep(random.uniform(10, 20))  # add a delay between opening different websites
+    visit_no = 0
+    for _ in range(1000):
+        for website in websites:
+         website = random.choice(websites).strip()  # strip to remove newline characters
+         stealth_browser(website)
+        visit_no += 1
+        print(f"Visited {visit_no} times")
+        time.sleep(random.uniform(1, 6))  # add a delay between opening different websites
